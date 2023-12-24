@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+dir=day$1
+mkdir $dir && cd $dir && touch index.ts input.txt
+
+tee index.ts >/dev/null <<END
+import { sanitizeInput } from '../utils/sanitize';
+import input from './input.txt';
+
+const lines = sanitizeInput(input);
+END

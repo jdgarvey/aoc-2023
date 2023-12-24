@@ -1,0 +1,21 @@
+{
+  "name": "aoc-2023",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "newday": "./utils/newday"
+  },
+  "devDependencies": {
+    "@types/ascii-art": "^1.4.3",
+    "@types/gradient-string": "^1.1.5",
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "ascii-art": "^2.8.5",
+    "canvas": "^2.11.2",
+    "gradient-string": "^2.0.2"
+  }
+}
