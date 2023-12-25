@@ -15,6 +15,11 @@ To run:
 bun run day<number>/index.ts
 ```
 
+To run in VSCode:
+1. Open the "Run and Debug" view.
+2. Select the "Run File" configuration.
+3. Click play or hit the debug keyboard shortcut
+
 To create files for a new day:
 ```bash
 bun run newday <number>
