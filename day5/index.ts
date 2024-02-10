@@ -24,26 +24,23 @@ console.log(Math.min(...locations));
 
 // Part 2
 
-interface Range {
-  start: number;
-  end: number;
-}
+type Range = [start: number, end: number];
 
 // get subset of source range that appears in target range
 function rangeIn(source: Range, target: Range): Range | null {
-  if (source.start > target.end || source.end < target.start) {
+  if (source[0] > target[1] || source[1] < target[0]) {
     return null;
   } 
-  const start = Math.max(source.start, target.start);
-  const end = Math.min(source.end, target.end);
-  return {start, end};
+  const start = Math.max(source[0], target[0]);
+  const end = Math.min(source[1], target[1]);
+  return [start, end];
 }
 
-const seedRanges = seeds.split(' ').map(Number).reduce((result, number, i, s) => {
+const seedRanges = seeds.split(' ').map(Number).reduce((result: Range[], number, i, s) => {
   return i % 2 === 0 
-    ? [...result, {start: number, end: number + s[i + 1] - 1}] 
+    ? [...result, [number, number + s[i + 1] - 1]] as Range[]
     : result
-}, [] as Range[]);
+}, []);
 
 const part2 = seedRanges.map((seedRange) => {
   return groups.reduce((converted, group) => {
@@ -51,7 +48,7 @@ const part2 = seedRanges.map((seedRange) => {
     group.forEach(range => {
       converted.forEach(convertedRange => {
         const [destination, source, spread] = range.split(' ').map(Number);
-        const sourceRange = {start: source, end: source + (spread - 1)};
+        const sourceRange = [source, source + (spread - 1)];
         const offset = source - destination;
         const result = rangeIn(convertedRange, sourceRange);
         if (result) {
@@ -65,7 +62,7 @@ const part2 = seedRanges.map((seedRange) => {
     console.log(results)
     return results;
   }, [seedRange]);
-})
+});
 
 // const part2 = allSeeds.map((seed) => {
 //   return groups.reduce((converted, group) => {
